@@ -1,0 +1,87 @@
+C:\Users\tolen\Desktop\WishList\BackEnd\WishList\WishList\bin\Debug\net5.0\appsettings.Development.json
+C:\Users\tolen\Desktop\WishList\BackEnd\WishList\WishList\bin\Debug\net5.0\appsettings.json
+C:\Users\tolen\Desktop\WishList\BackEnd\WishList\WishList\bin\Debug\net5.0\WishList.exe
+C:\Users\tolen\Desktop\WishList\BackEnd\WishList\WishList\bin\Debug\net5.0\WishList.deps.json
+C:\Users\tolen\Desktop\WishList\BackEnd\WishList\WishList\bin\Debug\net5.0\WishList.runtimeconfig.json
+C:\Users\tolen\Desktop\WishList\BackEnd\WishList\WishList\bin\Debug\net5.0\WishList.runtimeconfig.dev.json
+C:\Users\tolen\Desktop\WishList\BackEnd\WishList\WishList\bin\Debug\net5.0\WishList.dll
+C:\Users\tolen\Desktop\WishList\BackEnd\WishList\WishList\bin\Debug\net5.0\ref\WishList.dll
+C:\Users\tolen\Desktop\WishList\BackEnd\WishList\WishList\bin\Debug\net5.0\WishList.pdb
+C:\Users\tolen\Desktop\WishList\BackEnd\WishList\WishList\bin\Debug\net5.0\Humanizer.dll
+C:\Users\tolen\Desktop\WishList\BackEnd\WishList\WishList\bin\Debug\net5.0\Microsoft.Data.SqlClient.dll
+C:\Users\tolen\Desktop\WishList\BackEnd\WishList\WishList\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.dll
+C:\Users\tolen\Desktop\WishList\BackEnd\WishList\WishList\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.Abstractions.dll
+C:\Users\tolen\Desktop\WishList\BackEnd\WishList\WishList\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.Design.dll
+C:\Users\tolen\Desktop\WishList\BackEnd\WishList\WishList\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.Relational.dll
+C:\Users\tolen\Desktop\WishList\BackEnd\WishList\WishList\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.Relational.Design.dll
+C:\Users\tolen\Desktop\WishList\BackEnd\WishList\WishList\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.SqlServer.dll
+C:\Users\tolen\Desktop\WishList\BackEnd\WishList\WishList\bin\Debug\net5.0\Microsoft.EntityFrameworkCore.SqlServer.Design.dll
+C:\Users\tolen\Desktop\WishList\BackEnd\WishList\WishList\bin\Debug\net5.0\Microsoft.Extensions.DependencyInjection.dll
+C:\Users\tolen\Desktop\WishList\BackEnd\WishList\WishList\bin\Debug\net5.0\Microsoft.Identity.Client.dll
+C:\Users\tolen\Desktop\WishList\BackEnd\WishList\WishList\bin\Debug\net5.0\Microsoft.IdentityModel.JsonWebTokens.dll
+C:\Users\tolen\Desktop\WishList\BackEnd\WishList\WishList\bin\Debug\net5.0\Microsoft.IdentityModel.Logging.dll
+C:\Users\tolen\Desktop\WishList\BackEnd\WishList\WishList\bin\Debug\net5.0\Microsoft.IdentityModel.Protocols.dll
+C:\Users\tolen\Desktop\WishList\BackEnd\WishList\WishList\bin\Debug\net5.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+C:\Users\tolen\Desktop\WishList\BackEnd\WishList\WishList\bin\Debug\net5.0\Microsoft.IdentityModel.Tokens.dll
+C:\Users\tolen\Desktop\WishList\BackEnd\WishList\WishList\bin\Debug\net5.0\Newtonsoft.Json.dll
+C:\Users\tolen\Desktop\WishList\BackEnd\WishList\WishList\bin\Debug\net5.0\System.Configuration.ConfigurationManager.dll
+C:\Users\tolen\Desktop\WishList\BackEnd\WishList\WishList\bin\Debug\net5.0\System.Diagnostics.DiagnosticSource.dll
+C:\Users\tolen\Desktop\WishList\BackEnd\WishList\WishList\bin\Debug\net5.0\System.IdentityModel.Tokens.Jwt.dll
+C:\Users\tolen\Desktop\WishList\BackEnd\WishList\WishList\bin\Debug\net5.0\System.Runtime.Caching.dll
+C:\Users\tolen\Desktop\WishList\BackEnd\WishList\WishList\bin\Debug\net5.0\System.Security.Cryptography.ProtectedData.dll
+C:\Users\tolen\Desktop\WishList\BackEnd\WishList\WishList\bin\Debug\net5.0\runtimes\unix\lib\netcoreapp3.1\Microsoft.Data.SqlClient.dll
+C:\Users\tolen\Desktop\WishList\BackEnd\WishList\WishList\bin\Debug\net5.0\runtimes\win\lib\netcoreapp3.1\Microsoft.Data.SqlClient.dll
+C:\Users\tolen\Desktop\WishList\BackEnd\WishList\WishList\bin\Debug\net5.0\runtimes\win-arm\native\Microsoft.Data.SqlClient.SNI.dll
+C:\Users\tolen\Desktop\WishList\BackEnd\WishList\WishList\bin\Debug\net5.0\runtimes\win-arm\native\Microsoft.Data.SqlClient.SNI.pdb
+C:\Users\tolen\Desktop\WishList\BackEnd\WishList\WishList\bin\Debug\net5.0\runtimes\win-arm64\native\Microsoft.Data.SqlClient.SNI.dll
+C:\Users\tolen\Desktop\WishList\BackEnd\WishList\WishList\bin\Debug\net5.0\runtimes\win-arm64\native\Microsoft.Data.SqlClient.SNI.pdb
+C:\Users\tolen\Desktop\WishList\BackEnd\WishList\WishList\bin\Debug\net5.0\runtimes\win-x64\native\Microsoft.Data.SqlClient.SNI.dll
+C:\Users\tolen\Desktop\WishList\BackEnd\WishList\WishList\bin\Debug\net5.0\runtimes\win-x64\native\Microsoft.Data.SqlClient.SNI.pdb
+C:\Users\tolen\Desktop\WishList\BackEnd\WishList\WishList\bin\Debug\net5.0\runtimes\win-x86\native\Microsoft.Data.SqlClient.SNI.dll
+C:\Users\tolen\Desktop\WishList\BackEnd\WishList\WishList\bin\Debug\net5.0\runtimes\win-x86\native\Microsoft.Data.SqlClient.SNI.pdb
+C:\Users\tolen\Desktop\WishList\BackEnd\WishList\WishList\bin\Debug\net5.0\runtimes\win\lib\netstandard2.0\System.Runtime.Caching.dll
+C:\Users\tolen\Desktop\WishList\BackEnd\WishList\WishList\bin\Debug\net5.0\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
+C:\Users\tolen\Desktop\WishList\BackEnd\WishList\WishList\obj\Debug\net5.0\WishList.csprojAssemblyReference.cache
+C:\Users\tolen\Desktop\WishList\BackEnd\WishList\WishList\obj\Debug\net5.0\WishList.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\tolen\Desktop\WishList\BackEnd\WishList\WishList\obj\Debug\net5.0\WishList.AssemblyInfoInputs.cache
+C:\Users\tolen\Desktop\WishList\BackEnd\WishList\WishList\obj\Debug\net5.0\WishList.AssemblyInfo.cs
+C:\Users\tolen\Desktop\WishList\BackEnd\WishList\WishList\obj\Debug\net5.0\WishList.csproj.CoreCompileInputs.cache
+C:\Users\tolen\Desktop\WishList\BackEnd\WishList\WishList\obj\Debug\net5.0\WishList.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\tolen\Desktop\WishList\BackEnd\WishList\WishList\obj\Debug\net5.0\staticwebassets\WishList.StaticWebAssets.Manifest.cache
+C:\Users\tolen\Desktop\WishList\BackEnd\WishList\WishList\obj\Debug\net5.0\staticwebassets\WishList.StaticWebAssets.xml
+C:\Users\tolen\Desktop\WishList\BackEnd\WishList\WishList\obj\Debug\net5.0\scopedcss\bundle\WishList.styles.css
+C:\Users\tolen\Desktop\WishList\BackEnd\WishList\WishList\obj\Debug\net5.0\WishList.RazorTargetAssemblyInfo.cache
+C:\Users\tolen\Desktop\WishList\BackEnd\WishList\WishList\obj\Debug\net5.0\WishList.csproj.CopyComplete
+C:\Users\tolen\Desktop\WishList\BackEnd\WishList\WishList\obj\Debug\net5.0\WishList.dll
+C:\Users\tolen\Desktop\WishList\BackEnd\WishList\WishList\obj\Debug\net5.0\ref\WishList.dll
+C:\Users\tolen\Desktop\WishList\BackEnd\WishList\WishList\obj\Debug\net5.0\WishList.pdb
+C:\Users\tolen\Desktop\WishList\BackEnd\WishList\WishList\obj\Debug\net5.0\WishList.genruntimeconfig.cache
+C:\Users\tolen\Desktop\WishList\BackEnd\WishList\WishList\obj\Debug\net5.0\WishList.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\tolen\Desktop\WishList\BackEnd\WishList\WishList\bin\Debug\net5.0\WishList.xml
+C:\Users\tolen\Desktop\WishList\BackEnd\WishList\WishList\bin\Debug\net5.0\Microsoft.AspNetCore.JsonPatch.dll
+C:\Users\tolen\Desktop\WishList\BackEnd\WishList\WishList\bin\Debug\net5.0\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
+C:\Users\tolen\Desktop\WishList\BackEnd\WishList\WishList\bin\Debug\net5.0\Microsoft.OpenApi.dll
+C:\Users\tolen\Desktop\WishList\BackEnd\WishList\WishList\bin\Debug\net5.0\Newtonsoft.Json.Bson.dll
+C:\Users\tolen\Desktop\WishList\BackEnd\WishList\WishList\bin\Debug\net5.0\Swashbuckle.AspNetCore.Swagger.dll
+C:\Users\tolen\Desktop\WishList\BackEnd\WishList\WishList\bin\Debug\net5.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+C:\Users\tolen\Desktop\WishList\BackEnd\WishList\WishList\bin\Debug\net5.0\Swashbuckle.AspNetCore.SwaggerUI.dll
+C:\Users\JoViO\OneDrive\Documentos\GitHub\WishList\BackEnd\WishList\WishList\obj\Debug\net5.0\WishList.csprojAssemblyReference.cache
+C:\Users\JoViO\OneDrive\Documentos\GitHub\WishList\BackEnd\WishList\WishList\obj\Debug\net5.0\WishList.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\JoViO\OneDrive\Documentos\GitHub\WishList\BackEnd\WishList\WishList\obj\Debug\net5.0\WishList.AssemblyInfoInputs.cache
+C:\Users\JoViO\OneDrive\Documentos\GitHub\WishList\BackEnd\WishList\WishList\obj\Debug\net5.0\WishList.AssemblyInfo.cs
+C:\Users\JoViO\OneDrive\Documentos\GitHub\WishList\BackEnd\WishList\WishList\obj\Debug\net5.0\WishList.csproj.CoreCompileInputs.cache
+C:\Users\JoViO\OneDrive\Documentos\GitHub\WishList\BackEnd\WishList\WishList\obj\Debug\net5.0\WishList.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\JoViO\OneDrive\Documentos\GitHub\WishList\BackEnd\WishList\WishList\obj\Debug\net5.0\WishList.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\JoViO\OneDrive\Documentos\GitHub\WishList\BackEnd\WishList\WishList\obj\Debug\net5.0\WishList.dll
+C:\Users\JoViO\OneDrive\Documentos\GitHub\WishList\BackEnd\WishList\WishList\obj\Debug\net5.0\ref\WishList.dll
+C:\Users\JoViO\OneDrive\Documentos\GitHub\WishList\BackEnd\WishList\WishList\obj\Debug\net5.0\WishList.pdb
+C:\Users\JoViO\OneDrive\Documentos\GitHub\senai_2dm_sprint4_frontend\Projeto WishList\WishList\BackEnd\WishList\WishList\obj\Debug\net5.0\WishList.csprojAssemblyReference.cache
+C:\Users\JoViO\OneDrive\Documentos\GitHub\senai_2dm_sprint4_frontend\Projeto WishList\WishList\BackEnd\WishList\WishList\obj\Debug\net5.0\WishList.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\JoViO\OneDrive\Documentos\GitHub\senai_2dm_sprint4_frontend\Projeto WishList\WishList\BackEnd\WishList\WishList\obj\Debug\net5.0\WishList.AssemblyInfoInputs.cache
+C:\Users\JoViO\OneDrive\Documentos\GitHub\senai_2dm_sprint4_frontend\Projeto WishList\WishList\BackEnd\WishList\WishList\obj\Debug\net5.0\WishList.AssemblyInfo.cs
+C:\Users\JoViO\OneDrive\Documentos\GitHub\senai_2dm_sprint4_frontend\Projeto WishList\WishList\BackEnd\WishList\WishList\obj\Debug\net5.0\WishList.csproj.CoreCompileInputs.cache
+C:\Users\JoViO\OneDrive\Documentos\GitHub\senai_2dm_sprint4_frontend\Projeto WishList\WishList\BackEnd\WishList\WishList\obj\Debug\net5.0\WishList.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\JoViO\OneDrive\Documentos\GitHub\senai_2dm_sprint4_frontend\Projeto WishList\WishList\BackEnd\WishList\WishList\obj\Debug\net5.0\WishList.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\JoViO\OneDrive\Documentos\GitHub\senai_2dm_sprint4_frontend\Projeto WishList\WishList\BackEnd\WishList\WishList\obj\Debug\net5.0\WishList.dll
+C:\Users\JoViO\OneDrive\Documentos\GitHub\senai_2dm_sprint4_frontend\Projeto WishList\WishList\BackEnd\WishList\WishList\obj\Debug\net5.0\ref\WishList.dll
+C:\Users\JoViO\OneDrive\Documentos\GitHub\senai_2dm_sprint4_frontend\Projeto WishList\WishList\BackEnd\WishList\WishList\obj\Debug\net5.0\WishList.pdb
