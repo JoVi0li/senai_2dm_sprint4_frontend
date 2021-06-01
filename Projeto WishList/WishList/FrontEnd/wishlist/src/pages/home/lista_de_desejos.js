@@ -10,7 +10,8 @@ class ListaDesejos extends Component{
         super(props);
         this.state = {
             listaDesejos : [],
-            desejo : ''
+            desejo : '',
+            idDesejo : 0
         }
     }
 
