@@ -1,0 +1,80 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+
+* {
+  padding: 0;
+  margin: 0;
+  border: 0;
+  box-sizing: border-box
+}
+
+:root{
+  --cor-tema: #83BEDF;
+  --font: 'Montserrat', sans-serif;
+  --font-size-regular: 24px;
+}
+
+.Flex-center-bt{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+}
+
+.App-header{
+  width: 100vw;
+  height: 75px;
+  margin-top: 10px;
+}
+
+.App-nav{
+  width: 90%;
+  margin: auto;
+}
+
+.App-ul{
+  width: 43vw;
+  font-family: var(--font);
+  list-style: none;
+}
+
+.App-a{
+  color: black;
+  text-decoration: none;
+  font-size: var(--font-size-regular);
+}
+
+.App-a:hover{
+  color: var(--cor-tema);
+}
+
+.App-a-login{
+  padding: 20px 40px;
+  border-radius: 30px;
+  background-color: var(--cor-tema);
+  font-family: var(--font);
+  font-size: var(--font-size-regular);
+  font-weight: bold;
+  color: white;
+  text-decoration: none;
+}
+
+/* início main */
+
+.App-main{
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-top: 10vh;
+}
+
+.App-text{
+  width: 50vw;
+  height: 80vh;
+  background-color: black;
+}
+
+.App-ilustration{
+  width: 50vw;
+  height: 80vh;
+  background-color: red;
+}
