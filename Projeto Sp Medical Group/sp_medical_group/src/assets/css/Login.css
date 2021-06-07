@@ -1,0 +1,104 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+
+* {
+  padding: 0;
+  margin: 0;
+  border: 0;
+  box-sizing: border-box
+}
+
+:root{
+    --cor-tema: #83BEDF;
+    --cor-dashbord: #F6F6F6;
+    --font: normal normal normal 24px 'Montserrat', sans-serif;
+    --font-title: normal normal bold 50px 'Montserrat', sans-serif;
+    --font-size-regular: 24px;
+    --font-size-title:50px;
+    
+}
+
+.Flex-center{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.Flex-evenly-column{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.Login-main{
+    display: flex;
+}
+
+.Login-ilustration{
+    width: 50vw;
+    height: 100vh;
+    background-color: var(--cor-dashbord);
+}
+
+.Login-login{
+    width: 50vw;
+    height: 100vh;
+}
+
+.Login-text h1{
+    font: var(--font-title);
+}
+
+.Login-input{
+    width: 28vw;
+    height: 10vh;
+    border-radius: 30px;
+    background-color: var(--cor-dashbord);
+    outline: none;
+    font: var(--font);
+    text-align: center;
+    border: 2px solid #F6F6F6;
+}
+
+.Login-input:focus{
+    border: 2px solid rgba(0, 0, 0, 0.205);
+}
+
+.Login-input-email{
+    background-image: url('../icon/login-user.svg');
+    background-repeat: no-repeat;
+    background-position: left;
+    background-position-x: 10px;
+}
+
+.Login-input-senha{
+    background-image: url('../icon/login-lock.svg');
+    background-repeat: no-repeat;
+    background-position: left;
+    background-position-x: 10px;
+}
+
+.Login-form{
+    height: 40vh;
+    flex-direction: column;
+}
+
+
+.Login-button{
+    width: 14vw;
+    height: 8vh;
+    border-radius: 30px;
+    background-color: var(--cor-tema);
+    font: var(--font);
+    font-weight: bold;
+    color: white;
+}
+
+.Login-button:hover{
+    cursor: pointer;
+}
+
+
+.icon-teste{
+    color: black;
+}

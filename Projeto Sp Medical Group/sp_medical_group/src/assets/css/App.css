@@ -9,8 +9,12 @@
 
 :root{
   --cor-tema: #83BEDF;
-  --font: 'Montserrat', sans-serif;
+  --cor-dashbord: #F6F6F6;
+  --font: normal normal normal 24px 'Montserrat', sans-serif;
+  --font-title: normal normal bold 50px 'Montserrat', sans-serif;
   --font-size-regular: 24px;
+  --font-size-title:50px;
+  
 }
 
 .Flex-center-bt{
@@ -18,6 +22,12 @@
   justify-content: space-between;
   align-items: center;
 
+}
+
+.Flex-center{
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .App-header{
@@ -32,8 +42,8 @@
 }
 
 .App-ul{
-  width: 43vw;
-  font-family: var(--font);
+  width: 38vw;
+  font: var(--font);
   list-style: none;
 }
 
@@ -51,8 +61,8 @@
   padding: 20px 40px;
   border-radius: 30px;
   background-color: var(--cor-tema);
-  font-family: var(--font);
-  font-size: var(--font-size-regular);
+  font: var(--font);
+
   font-weight: bold;
   color: white;
   text-decoration: none;
@@ -70,11 +80,28 @@
 .App-text{
   width: 50vw;
   height: 80vh;
-  background-color: black;
+  flex-direction: column;
+}
+
+.App-h1-p{
+  width: 60%;
+  height: 50%;
+}
+
+.App-h1-p h1{
+  font: var(--font-title);
+  margin-bottom: 50px;
+}
+
+.App-h1-p p{
+  text-align: justify;
+  font: var(--font);
+  
 }
 
 .App-ilustration{
   width: 50vw;
   height: 80vh;
-  background-color: red;
+  display: flex;
+
 }

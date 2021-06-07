@@ -7,14 +7,13 @@ import React, { Component } from "react";
             <header className="App-header">
                 <nav className="App-nav Flex-center-bt">
                 <div>
-                    <a href="Home"><img src={logo}/></a>
+                    <a href="Home"><img src={logo} alt="Logo Sp Medical Group"/></a>
                 </div>
                 <ul className="App-ul Flex-center-bt">
                     <li><a className="App-a" href="Home">Home</a></li>
-                    <li><a className="App-a" href="">Sobre</a></li>
-                    <li><a className="App-a" href="">Serviços</a></li>
-                    <li><a className="App-a" href="">Clínicas</a></li>
-                    <li><a className="App-a-login" href="">Login</a></li>
+                    <li><a className="App-a" href="dashbord">Dashbord</a></li>
+                    <li><a className="App-a" href="#">Clínicas</a></li>
+                    <li><a className="App-a-login" href="Login">Login</a></li>
                 </ul>
                 </nav>
             </header>
