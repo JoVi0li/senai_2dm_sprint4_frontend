@@ -7,7 +7,8 @@ import App from './pages/home/App';
 import Serviços from './pages/servicos/Servicos';
 import Clinicas from './pages/clinicas/Clinicas';
 import Login from './pages/login/Login';
-import dashbord from './pages/Dashbord/geral/Geral'
+import Dashbord from './pages/Dashbord/geral/Geral'
+import Pacientes from './pages/Dashbord/paciente/Paciente'
 
 import reportWebVitals from './reportWebVitals';
 
@@ -19,7 +20,8 @@ const routing = (
       <Route path="/clinicas" component={Clinicas}/>
       <Route path="/login" component={Login}/>
 
-      <Route path="/dashbord" component={dashbord} />
+      <Route exact path="/dashbord" component={Dashbord} />
+      <Route path="/dashbord/pacientes" component={Pacientes} />
       <Redirect to="/"/>
     </Switch>
   </Router>

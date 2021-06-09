@@ -14,37 +14,37 @@ class SideBar extends Component{
         return(
             <div className="Side-bar Flex-column-around">
             <figure className="Logo">
-                <img  src={logo} alt="Logo Sp Medical Group" width="100" height="100" />
+                <img  src={logo} alt="Logo Sp Medical Group" width="100" height="100"  />
             </figure>
 
 
             <nav className="Navegacao">
                 <ul className="Flex-column-between">
                     <li>
-                        <img src={geral} />
-                        <a href="dashbord" >Geral</a>
+                        <img src={geral}  alt="Icone de gráfico"/>
+                        <a href="/dashbord" >Geral</a>
                     </li>
                     <li>
-                        <img src={paciente} />
-                        <a href="dashbord" >Pacientes</a>
+                        <img src={paciente} alt="Icone de pacientes" />
+                        <a href="/dashbord/pacientes" >Pacientes</a>
                     </li>
                     <li>
-                        <img src={medico} />
-                        <a href="dashbord" >Médicos</a>
+                        <img src={medico} alt="Icone de médicos"/>
+                        <a href="/dashbord" >Médicos</a>
                     </li>
                     <li>
-                        <img src={consulta} />
-                        <a href="dashbord" >Consultas</a>
+                        <img src={consulta} alt="Iconde de consultas"/>
+                        <a href="/dashbord" >Consultas</a>
                     </li>
                     <li>
-                        <img src={clinica} />
-                        <a href="dashbord" >Clínicas</a>
+                        <img src={clinica} alt="Icone de clínicas"/>
+                        <a href="/dashbord" >Clínicas</a>
                     </li>
                 </ul>
             </nav>
 
             <div className="User">
-                <img src={user} />
+                <img src={user} alt="Icone de usuários" />
                 <p>João Vitor</p>
             </div>
         </div>

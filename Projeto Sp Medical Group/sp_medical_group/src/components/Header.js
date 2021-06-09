@@ -1,4 +1,4 @@
-import logo from '../../assets/icon/logo.svg'
+import logo from '../assets/icon/logo.svg'
 import React, { Component } from "react";
 
  class Header extends Component{
@@ -12,7 +12,7 @@ import React, { Component } from "react";
                 <ul className="App-ul Flex-center-bt">
                     <li><a className="App-a" href="Home">Home</a></li>
                     <li><a className="App-a" href="dashbord">Dashbord</a></li>
-                    <li><a className="App-a" href="#">Clínicas</a></li>
+                    <li><a className="App-a" href="Clinicas">Clínicas</a></li>
                     <li><a className="App-a-login" href="Login">Login</a></li>
                 </ul>
                 </nav>
