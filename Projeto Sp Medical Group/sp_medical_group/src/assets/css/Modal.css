@@ -1,0 +1,105 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+
+*{
+    padding: 0;
+    margin: 0;
+    border: 0;
+    box-sizing: border-box
+}
+
+:root{
+    --font: normal normal normal 24px 'Montserrat', sans-serif;
+    --font-titulo: normal normal bold 50px 'Montserrat', sans-serif;
+    --azul: #83BEDF;
+    --cinza: #F6F6F6;
+}
+
+.content{
+    width: 70vw;
+    height: 75vh;
+    background-color: #FFF;
+    border-radius: 30px;
+    box-shadow: 4px 4px 4px 4px rgba(0, 0, 0, 0.25);
+    margin: auto;
+    display: flex;
+    align-items: flex-start;
+}
+
+.closeModal{
+    background-color: #FFF;
+    border-radius: 30px;
+    margin: 20px 0px 0px 20px;
+    
+}
+
+.closeModal:hover{
+    cursor: pointer;
+}
+
+.content img{
+    background-color: #FFF;
+    box-shadow: none;
+    transform: rotate(45deg);
+    width: 40px;
+    height: 40px;
+}
+
+
+.formContent{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-right: 60px;
+}
+
+.formContent header{
+    margin-top: 20px;
+}
+
+.formContent header h1{
+    font: var(--font-titulo);
+    color: var(--azul) !important;
+}
+
+.modalForm{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+
+}
+
+.modalForm input, .listSelect{
+    width: 30%;
+    height: 10vh;
+    border-radius: 30px;
+    background-color: var(--cinza);
+    outline: none;
+    border: 2px solid rgba(0, 0, 0, 0.25);
+    font: var(--font);
+    text-align: center;
+}
+
+
+
+.modalForm input:focus{
+    border: 2px solid black;
+}
+
+.modalForm button{
+    width: 50%;
+    height: 100px;
+    background-color: var(--azul);
+    color: white;
+    font: var(--font);
+    border-radius: 30px;
+}
+
+.modalForm button:hover{
+    cursor: pointer;
+}

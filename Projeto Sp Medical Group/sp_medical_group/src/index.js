@@ -2,32 +2,36 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Route, BrowserRouter as Router, Switch, Redirect } from 'react-router-dom';
 import './index.css';
-
 import App from './pages/home/App';
-import Serviços from './pages/servicos/Servicos';
-import Clinicas from './pages/clinicas/Clinicas';
-import Login from './pages/login/Login';
-import Dashbord from './pages/Dashbord/geral/Geral'
-import Pacientes from './pages/Dashbord/paciente/Paciente'
-
+import Login from './pages/login/Login'
+import Home from './pages/dashbordHome/Home'
+import Paciente from './pages/dashbordPaciente/Paciente';
+import Medico from './pages/dashbordMedico/Medico';
 import reportWebVitals from './reportWebVitals';
+
 
 const routing = (
   <Router>
-    <Switch>
-      <Route exact path="/" component={App}/>
-      <Route path="/servicos" component={Serviços}/>
-      <Route path="/clinicas" component={Clinicas}/>
-      <Route path="/login" component={Login}/>
-
-      <Route exact path="/dashbord" component={Dashbord} />
-      <Route path="/dashbord/pacientes" component={Pacientes} />
-      <Redirect to="/"/>
-    </Switch>
+    <div>
+      <Switch>
+        <Route exact path='/' component={App} />
+        <Route path='/login' component={Login} />
+        <Route exact path='/dashbord' component={Home}/>
+        <Route path='/dashbord/pacientes' component={Paciente}/>
+        <Route path='/dashbord/medicos' component={Medico}/>
+        <Redirect to='/' />
+      </Switch>
+    </div>
   </Router>
+)
+
+ReactDOM.render(
+
+  routing,
+  document.getElementById('root')
 );
 
-ReactDOM.render(routing, document.getElementById('root')
-);
-
+// If you want to start measuring performance in your app, pass a function
+// to log results (for example: reportWebVitals(console.log))
+// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();

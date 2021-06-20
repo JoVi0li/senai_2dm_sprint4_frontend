@@ -1,0 +1,85 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+
+*{
+    padding: 0;
+    margin: 0;
+    border: 0;
+    box-sizing: border-box
+}
+
+:root{
+    --font: normal normal normal 24px 'Montserrat', sans-serif;
+    --font-titulo: normal normal bold 50px 'Montserrat', sans-serif;
+    --azul: #83BEDF;
+    --cinza: #F6F6F6;
+}
+
+.barBody{
+    width: 20vw;
+   
+    background-color: var(--cinza);
+    
+}
+
+.barContent{
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+
+}
+
+.barLogo img {
+    width: 100px;
+    height: 100px;
+}
+.barNav{
+    height: 40vh;
+    width: 60%;
+}
+
+.barNav ul{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.barNav ul li{
+    list-style: none;
+
+}
+
+.barNav ul li a{
+    font: var(--font);
+    text-decoration: none;
+    color: black;
+    display: flex;
+    align-items: center;
+}
+
+.barNav ul li a:hover{
+    color: var(--azul);
+}
+
+.barNav ul li a:focus{
+    color: var(--azul);
+}
+
+.barNav ul li a img{
+    margin-right: 2vw;
+}
+
+.barUser{
+    width: 60%;
+    display: flex;
+    align-items: center;
+    font: var(--font);
+    font-weight: bold !important;
+}
+
+.barUser img{
+    margin-right: 2vw;
+
+}

@@ -1,0 +1,49 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+
+*{
+    padding: 0;
+    margin: 0;
+    border: 0;
+    box-sizing: border-box
+}
+
+:root{
+    --font: normal normal normal 24px 'Montserrat', sans-serif;
+    --font-titulo: normal normal bold 50px 'Montserrat', sans-serif;
+    --azul: #83BEDF;
+    --cinza: #F6F6F6;
+}
+
+.homeBody{
+    display: flex;
+}
+
+.homeMain{
+    width: 80vw;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.homeCard{
+    width: 30vw;
+    height: 530px;
+    border-radius: 30px;
+    background-color: var(--cinza);
+    margin-bottom: 50px;
+    margin-top: 50px;
+    filter: drop-shadow(6px 6px 10px rgba(0, 0, 0, 0.25));
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.homeCardTitulo{
+    margin-top: 2vh;
+}
+
+.homeCardTitulo h2 {
+    font: var(--font);
+    
+}

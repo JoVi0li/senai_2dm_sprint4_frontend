@@ -1,47 +1,33 @@
-import { Component } from 'react';
 import '../../assets/css/App.css';
-import ilustration from '../../assets/img/ilustrationHome.svg'
-import Header from '../../components/Header'
-
-class Home extends Component{
-  constructor(props){
-    super(props);
-    this.state = {
-
-    }
-  }
-
-  render(){
-    return(
-      <body>
-        <Header/>
-        <main className="App-main">
-          <div className="App-text Flex-center">
-            <div className="App-h1-p ">
-              <h1>Sp Medical Group</h1>
-              <p>Somos uma nova clínica médica de pequeno porte,
-                fundada pelo médico Fernando Strada em 2020 na região da Paulista em São Paulo.
-                Contamos com uma equipe de médicos que atuam em diversas áreas 
-                (pediatria, odontologia, gastrenterologia etc.).
-              </p>
-            </div>
-          <div>
-          </div>
-            <a className="App-a-login" href="Sobre">Saiba mais</a>
-          </div>
-          <div className="App-ilustration">
-            <img src={ilustration} alt="Ilustração de uma médica"/>
-          </div>
-        </main>
-      </body>
-    )
-  }
-}
+import Header from '../../components/header/Header'
+import ilustration from '../../assets/images/ilustration01.svg'
+import { Link } from 'react-router-dom';
 
 
 function App() {
   return (
-   <Home/>
+    <div className="body">
+
+      <Header />
+      <main className="main">
+
+        <div className="appTextButton">
+          <h1>Sp Medical Group</h1>
+          <p>Somos uma nova clínica médica de pequeno porte, fundada pelo médico Fernando Strada em 2020 na região da
+            Paulista em São Paulo.
+            Contamos com uma equipe de médicos que atuam em diversas
+            áreas (pediatria, odontologia, gastrenterologia etc.).</p>
+            <button className="appButton"><Link to='/sobre'>Saiba mais</Link></button>
+        </div>
+
+
+
+        <figure className="appFigure">
+          <img src={ilustration} alt='Ilustração de uma médica' />
+        </figure>
+
+      </main>
+    </div>
   );
 }
 

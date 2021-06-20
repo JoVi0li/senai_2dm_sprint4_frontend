@@ -1,0 +1,162 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+
+*{
+    padding: 0;
+    margin: 0;
+    border: 0;
+    box-sizing: border-box
+}
+
+:root{
+    --font: normal normal normal 24px 'Montserrat', sans-serif;
+    --font-titulo: normal normal bold 50px 'Montserrat', sans-serif;
+    --azul: #83BEDF;
+    --cinza: #F6F6F6;
+}
+
+.Body{
+    width: 100vw;
+    height: 100%;
+    display: flex;
+}
+
+.Content{
+    height: 100%;
+    width: 80vw;
+    z-index: 00;
+}
+
+.Header{
+    width: 100%;
+    height: 220px;
+}
+
+.tituloButton{
+    margin: auto;
+    width: 90%;
+    height: 70%;
+    background-color: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.tituloIcon{
+    width: 15vw;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font: var(--font);
+}
+
+.buttonAdd button{
+    background-color: white;
+}
+
+.buttonAdd button:hover{
+    cursor:pointer ;
+}
+
+.infos{
+    width: 100%;
+    height: 30%;
+    border-top: 2px solid #E9E9E9;
+    border-bottom: 2px solid #E9E9E9;
+    display: flex;
+}
+
+.countUsers{
+    width: 22%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-right: 2px solid #E9E9E9;
+}
+
+.countUsers span{
+    font: var(--font-titulo);
+    color: var(--azul);
+    margin-right: 1vw;
+}
+
+.countUsers p{
+    font: var(--font);
+}
+
+.options{
+    display: flex;
+    align-items: center;
+    margin-left: 4vw;
+}
+
+.options form{
+    font: var(--font);
+}
+
+.options form select{
+    font: var(--font);
+    border: 2px solid #E9E9E9;
+    border-radius: 10px;
+    margin-left: 10px;
+}
+
+/* Lista */
+
+
+
+.list ul{
+    margin-top: 5vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.list ul li{
+    height: 100px;
+    width: 95%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    list-style: none;
+    background-color: var(--cinza);
+    border-radius: 30px;
+    margin-bottom: 3vh;
+}
+
+.list ul li figure{
+    width: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.list ul li figure img{
+    width: 70px;
+    height: 70px;
+    
+}
+
+.list ul li div{
+    width: 14vw;
+}
+
+.list ul li div p{
+    font: var(--font);
+}
+
+.subInfo{
+    font-weight: bold !important;
+    font-size: 21px !important;
+}
+
+
+.textJustify{
+    font-size: 19px !important;
+    text-align: justify ;
+}
+
+.mensagem{
+    color: black;
+    font: var(--font);
+}
