@@ -38,12 +38,39 @@
     flex-direction: column;
     align-items: center;
 }
-
-.homeCardTitulo{
-    margin-top: 2vh;
+.homeCardHeader{
+    width: 90%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
 }
 
-.homeCardTitulo h2 {
+.homeCardHeader img{
+    width: 50px;
+    height: 50px;
+    background-color: var(--cinza);
+}
+
+.homeCardHeader h2{
+    width: 95%;
+    height: 50px;
     font: var(--font);
-    
+    text-align: center;
+}
+
+.homeCardList li{
+    list-style: none;
+    display: flex;
+    justify-content: left;
+    margin-bottom: 5px;
+}
+
+.idEspecialidade{
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+.homeInput{
+    width: 50% !important;
 }

@@ -7,6 +7,8 @@ import Login from './pages/login/Login'
 import Home from './pages/dashbordHome/Home'
 import Paciente from './pages/dashbordPaciente/Paciente';
 import Medico from './pages/dashbordMedico/Medico';
+import Clinica from './pages/dashbordClinica/Clinica';
+import Consulta from './pages/dashbordConsulta/Consulta';
 import reportWebVitals from './reportWebVitals';
 
 
@@ -19,6 +21,8 @@ const routing = (
         <Route exact path='/dashbord' component={Home}/>
         <Route path='/dashbord/pacientes' component={Paciente}/>
         <Route path='/dashbord/medicos' component={Medico}/>
+        <Route path='/dashbord/clinicas' component={Clinica}/>
+        <Route path='/dashbord/consultas' component={Consulta}/>
         <Redirect to='/' />
       </Switch>
     </div>

@@ -1,27 +1,24 @@
 import { Component } from "react";
 import '../../assets/css/List.css';
 import SideBar from "../../components/sideBar/SideBar";
-import pacienteIcon from '../../assets/icons/paciente.svg';
-import userIcon from '../../assets/icons/user.svg';
+import consultaIcon from '../../assets/icons/consulta.svg';
 import moreIcon from '../../assets/icons/more.svg';
 
 import Modal from '../../components/Modal/Modal';
 
-class Paciente extends Component {
+class Clinica extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            listaPacientes: [],
-            listaUsuarios: [],
+            listaConsultas: [],
+            listaMedicos: [],
+            listaProntuarios: [],
             show: false,
             open: false,
-            idUsuario: 0,
-            nome: '',
-            rg: '',
-            telefone: '',
-            cpf: '',
-            endereco: '',
-            dataNascimento: '',
+            idProntuario: 0,
+            idMedico: 0,
+            dataConsulta: '',
+            situacao: '',
             isLoading: false
         }
     }
@@ -31,36 +28,42 @@ class Paciente extends Component {
     };
 
 
-    buscarPacientes = () => {
-        fetch('http://localhost:5000/api/Prontuario')
+    buscarConsultas = () => {
+        fetch('http://localhost:5000/api/Consultum')
             .then(resposta => resposta.json())
-            .then(data => this.setState({ listaPacientes: data }))
-            .catch(erro => console.log(erro));
-    }
-    buscarUsuarios = () => {
-        fetch('http://localhost:5000/api/Usuario')
-            .then(resposta => resposta.json())
-            .then(data => this.setState({ listaUsuarios: data }))
+            .then(data => this.setState({ listaConsultas: data }))
             .catch(erro => console.log(erro));
     }
 
-    cadastrarPacientes = (event) => {
+    buscarMedicos = () => {
+        fetch('http://localhost:5000/api/Medico')
+            .then(resposta => resposta.json())
+            .then(data => this.setState({ listaMedicos: data }))
+            .catch(erro => console.log(erro));
+    }
+
+    buscarProntuarios = () => {
+        fetch('http://localhost:5000/api/Prontuario')
+            .then(resposta => resposta.json())
+            .then(data => this.setState({ listaProntuarios: data }))
+            .catch(erro => console.log(erro));
+    }
+
+
+    cadastrarConsulta = (event) => {
         event.preventDefault();
         this.setState({ isLoading: true });
 
-        let paciente = {
-            IdUsuario: this.state.idUsuario,
-            Nome: this.state.nome,
-            Rg: this.state.rg,
-            Telefone: this.state.telefone,
-            Cpf: this.state.cpf,
-            Endereco: this.state.endereco,
-            DataNascimento: this.state.dataNascimento,
+        let consulta = {
+            IdProntuario: this.state.idProntuario,
+            IdMedico: this.state.idMedico,
+            DataConsulta: this.state.dataConsulta,
+            Situacao: this.state.situacao
         };
 
-        fetch('http://localhost:5000/api/Prontuario', {
+        fetch('http://localhost:5000/api/Consultum', {
             method: 'POST',
-            body: JSON.stringify(paciente),
+            body: JSON.stringify(consulta),
             headers: {
                 "Content-Type": "application/json",
             }
@@ -71,7 +74,7 @@ class Paciente extends Component {
                 }
             })
             .then(
-                this.buscarPacientes
+                this.buscarConsultas
             )
     }
 
@@ -81,8 +84,9 @@ class Paciente extends Component {
     };
 
     componentDidMount() {
-        this.buscarPacientes();
-        this.buscarUsuarios();
+        this.buscarConsultas();
+        this.buscarMedicos();
+        this.buscarProntuarios();
     }
 
     render() {
@@ -97,37 +101,45 @@ class Paciente extends Component {
                         <div className='tituloButton'>
                             <div className='tituloIcon'>
                                 <figure>
-                                    <img src={pacienteIcon} alt='Icone de pacientes' />
+                                    <img src={consultaIcon} alt='Icone de pacientes' />
                                 </figure>
-                                <p>Lista de pacientes</p>
+                                <p>Lista de consultas</p>
                             </div>
                             <div className='buttonAdd'>
                                 <Modal>
                                     <div className='formContent'>
                                         <header>
-                                            <h1>Cadastro de paciente (prontuario)</h1>
+                                            <h1>Cadastro de consulta</h1>
                                         </header>
-                                        <form className='modalForm' onSubmit={this.cadastrarPacientes}>
-                                            <select className='listSelect' name='idUsuario' type='text' value={this.state.idUsuario} onChange={this.atualizaStateCampo}>
-                                                <option value='0'>Selecione o usuário</option>
+                                        <form className='modalForm' onSubmit={this.cadastrarConsulta}>
+                                            <select className='listSelect' name='idMedico' type='text' value={this.state.idMedico} onChange={this.atualizaStateCampo}>
+                                                <option value='0'>Selecione o médico</option>
                                                 {
-                                                    this.state.listaUsuarios.map(usuario => {
+                                                    this.state.listaMedicos.map(medico => {
                                                         return (
-                                                            <option key={usuario.idUsuario} value={usuario.idUsuario}>
-                                                                {usuario.nome}
+                                                            <option key={medico.idMedico} value={medico.idMedico}>
+                                                                {medico.nome}
                                                             </option>
                                                         )
                                                     })
                                                 }
                                             </select>
 
-                                            <input placeholder='Nome' type='text' value={this.state.nome} name='nome' onChange={this.atualizaStateCampo} />
-                                            <input placeholder='RG' type='text' value={this.state.rg} name='rg' onChange={this.atualizaStateCampo} />
-                                            <input placeholder='Telefone' type='text' value={this.state.telefone} name='telefone' onChange={this.atualizaStateCampo} />
-                                            <input placeholder='CPF' type='text' value={this.state.cpf} name='cpf' onChange={this.atualizaStateCampo} />
-                                            <input placeholder='Endereço' type='text' value={this.state.endereco} name='endereco' onChange={this.atualizaStateCampo} />
-                                            <input placeholder='Data de Nascimento' type='date' value={this.state.dataNascimento} name='dataNascimento' onChange={this.atualizaStateCampo} />
-                                            <span style={{width: '100%'}}></span>
+                                            <select className='listSelect' name='idProntuario' type='text' value={this.state.idProntuario} onChange={this.atualizaStateCampo}>
+                                                <option value='0'>Selecione o prontuário</option>
+                                                {
+                                                    this.state.listaProntuarios.map(prontuario => {
+                                                        return (
+                                                            <option key={prontuario.idProntuario} value={prontuario.idProntuario}>
+                                                                {prontuario.nome}
+                                                            </option>
+                                                        )
+                                                    })
+                                                }
+                                            </select>
+                                            <input type='datetime-local' name='dataConsulta' value={this.state.dataConsulta} onChange={this.atualizaStateCampo} />
+                                            <input placeholder='Situação' type='text' name='situacao' value={this.state.situacao} onChange={this.atualizaStateCampo} />
+                                            <span ></span>
 
                                             {
                                                 this.state.isLoading === true &&
@@ -150,8 +162,8 @@ class Paciente extends Component {
                         </div>
                         <div className='infos'>
                             <div className='countUsers'>
-                                <span>{this.state.listaPacientes.length}</span>
-                                <p>pacientes</p>
+                                <span>{this.state.listaConsultas.length}</span>
+                                <p>prontuários</p>
                             </div>
                             <div className='options'>
                                 <form >
@@ -167,24 +179,23 @@ class Paciente extends Component {
                     <main className='list'>
                         <ul>
                             {
-                                this.state.listaPacientes.map(paciente => {
+                                this.state.listaConsultas.map(consulta => {
                                     return (
-                                        <li key={paciente.idProntuario}>
+                                        <li key={consulta.idConsulta}>
                                             <figure>
-                                                <img src={userIcon} alt='Icone de usuário' />
+                                                <img src={consultaIcon} alt='Icone de consulta' />
                                             </figure>
                                             <div className='nomeEmail'>
-                                                <p>{paciente.nome !== '' ? paciente.nome : '-'}</p>
-                                                <p className='subInfo'>{paciente.idUsuarioNavigation.email !== '' ? paciente.idUsuarioNavigation.email : '-'}</p>
+                                                <p>{consulta.idProntuario !== '' ? consulta.idProntuario : '-'}</p>
                                             </div>
                                             <div>
-                                                <p>{paciente.telefone !== '' ? paciente.telefone : '-'}</p>
+                                                <p>{consulta.idMedico !== '' ? consulta.idMedico : '-'}</p>
                                             </div>
                                             <div>
-                                                <p>{paciente.dataNascimento !== '' ?  Intl.DateTimeFormat("pt-BR").format(new Date(paciente.dataNascimento)) : '-'}</p>
+                                                <p>{consulta.dataConsulta !== '' ? Intl.DateTimeFormat("pt-BR").format(new Date(consulta.dataConsulta)) : '-'}</p>
                                             </div>
                                             <div>
-                                                <p className='textJustify'>{paciente.endereco !== '' ? paciente.endereco : '-'}</p>
+                                                <p>{consulta.situacao !== '' ? consulta.situacao : '-'}</p>
                                             </div>
                                             <figure>
                                                 <img src={moreIcon} alt='Icone de mais opções' />
@@ -201,4 +212,4 @@ class Paciente extends Component {
     }
 }
 
-export default Paciente;
+export default Clinica;
