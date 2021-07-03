@@ -76,10 +76,11 @@
     display: flex;
     align-items: center;
     font: var(--font);
+    font-size: 20px !important;
     font-weight: bold !important;
 }
 
 .barUser img{
-    margin-right: 2vw;
+    margin-right: 5px;
 
 }

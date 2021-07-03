@@ -42,7 +42,7 @@
 }
 
 .tituloIcon{
-    width: 15vw;
+    width: 17vw;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -131,10 +131,15 @@
     justify-content: center;
 }
 
-.list ul li figure img{
-    width: 70px;
-    height: 70px;
-    
+.list ul li figure button img{
+    width: 40px;
+    height: 40px;
+    background-color: var(--cinza);
+    margin-right: 10px;
+}
+
+.list ul li figure button:hover{
+    cursor: pointer;
 }
 
 .list ul li div{
@@ -160,3 +165,8 @@
     color: black;
     font: var(--font);
 }
+
+.space{
+    width: 100%;
+}
+

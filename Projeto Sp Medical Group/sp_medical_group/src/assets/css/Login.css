@@ -85,3 +85,26 @@
     color: white;
     font-weight: bold !important;
 }
+
+.loginContent form button:hover{
+    cursor: pointer;
+}
+
+.email{
+    background-image: url('../icons/user.svg');
+    background-repeat: no-repeat;
+    background-position-y: center;
+    background-position-x: 20px;
+}
+
+.senha{
+    background-image: url('../icons/lock.svg');
+    background-repeat: no-repeat;
+    background-position-y: center;
+    background-position-x: 20px;
+}
+
+.msgErro{
+    color: red;
+    font: var(--font);
+}

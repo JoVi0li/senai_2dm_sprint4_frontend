@@ -25,21 +25,33 @@ class Home extends Component {
 
 
     buscarEspecialidades = () => {
-        fetch('http://localhost:5000/api/Especialidade')
+        fetch('http://localhost:5000/api/Especialidade', {
+            headers: {
+                'Authorization': 'Bearer ' + localStorage.getItem('userToken')
+            }
+        })
             .then(resposta => resposta.json())
             .then(data => this.setState({ listaEspecialidades: data }))
             .catch(erro => console.log(erro));
     }
 
     buscarTiposUsuarios = () => {
-        fetch('http://localhost:5000/api/TipoUsuario')
+        fetch('http://localhost:5000/api/TipoUsuario', {
+            headers: {
+                'Authorization': 'Bearer ' + localStorage.getItem('userToken')
+            }
+        })
             .then(resposta => resposta.json())
             .then(data => this.setState({ listaTiposUsuarios: data }))
             .catch(erro => console.log(erro));
     }
 
     buscarUsuarios = () => {
-        fetch('http://localhost:5000/api/Usuario')
+        fetch('http://localhost:5000/api/Usuario', {
+            headers: {
+                'Authorization' : 'Bearer ' + localStorage.getItem('userToken')
+            }
+        })
             .then(resposta => resposta.json())
             .then(data => this.setState({ listaUsuarios: data }))
             .catch(erro => console.log(erro));
@@ -47,7 +59,7 @@ class Home extends Component {
 
     cadastrarUsuario = (event) => {
         event.preventDefault();
-        this.setState({ isLoading: true });
+        this.setState({ isLoading: true, mensagem: '' });
 
         let usuario = {
             Nome: this.state.nome,
@@ -61,6 +73,7 @@ class Home extends Component {
             body: JSON.stringify(usuario),
             headers: {
                 "Content-Type": "application/json",
+                "Authorization": "Bearer " + localStorage.getItem('userToken')
             }
         })
             .then(resposta => {
@@ -76,7 +89,7 @@ class Home extends Component {
 
     cadastrarTiposUsuarios = (event) => {
         event.preventDefault();
-        this.setState({ isLoading: true });
+        this.setState({ isLoading: true, mensagem: '' });
 
         let tipoUsuario = {
             nomeTipoUsuario: this.state.nomeTipoUsuario
@@ -87,6 +100,7 @@ class Home extends Component {
             body: JSON.stringify(tipoUsuario),
             headers: {
                 "Content-Type": "application/json",
+                "Authorization": "Bearer " + localStorage.getItem('userToken')
             }
         })
             .then(resposta => {
@@ -102,7 +116,7 @@ class Home extends Component {
 
     cadastrarEspecialidades = (event) => {
         event.preventDefault();
-        this.setState({ isLoading: true });
+        this.setState({ isLoading: true, mensagem: '' });
 
         let especialidade = {
             NomeEspecialidade: this.state.nomeEspecialidadeCad
@@ -113,6 +127,7 @@ class Home extends Component {
             body: JSON.stringify(especialidade),
             headers: {
                 "Content-Type": "application/json",
+                "Authorization": "Bearer " + localStorage.getItem('userToken')
             }
         })
             .then(resposta => {

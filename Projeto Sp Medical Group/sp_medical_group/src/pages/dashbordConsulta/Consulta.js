@@ -3,7 +3,8 @@ import '../../assets/css/List.css';
 import SideBar from "../../components/sideBar/SideBar";
 import consultaIcon from '../../assets/icons/consulta.svg';
 import moreIcon from '../../assets/icons/more.svg';
-
+import deleteIcon from '../../assets/icons/trash_full.svg';
+import editIcon from '../../assets/icons/edit.svg';
 import Modal from '../../components/Modal/Modal';
 
 class Clinica extends Component {
@@ -19,7 +20,8 @@ class Clinica extends Component {
             idMedico: 0,
             dataConsulta: '',
             situacao: '',
-            isLoading: false
+            isLoading: false,
+            mensagem: ''
         }
     }
 
@@ -29,21 +31,33 @@ class Clinica extends Component {
 
 
     buscarConsultas = () => {
-        fetch('http://localhost:5000/api/Consultum')
+        fetch('http://localhost:5000/api/Consultum', {
+            headers: {
+                "Authorization": "Bearer " + localStorage.getItem('userToken')
+            }
+        })
             .then(resposta => resposta.json())
             .then(data => this.setState({ listaConsultas: data }))
             .catch(erro => console.log(erro));
     }
 
     buscarMedicos = () => {
-        fetch('http://localhost:5000/api/Medico')
+        fetch('http://localhost:5000/api/Medico', {
+            headers: {
+                "Authorization": "Bearer " + localStorage.getItem('userToken')
+            }
+        })
             .then(resposta => resposta.json())
             .then(data => this.setState({ listaMedicos: data }))
             .catch(erro => console.log(erro));
     }
 
     buscarProntuarios = () => {
-        fetch('http://localhost:5000/api/Prontuario')
+        fetch('http://localhost:5000/api/Prontuario', {
+            headers: {
+                "Authorization": "Bearer " + localStorage.getItem('userToken')
+            }
+        })
             .then(resposta => resposta.json())
             .then(data => this.setState({ listaProntuarios: data }))
             .catch(erro => console.log(erro));
@@ -66,11 +80,13 @@ class Clinica extends Component {
             body: JSON.stringify(consulta),
             headers: {
                 "Content-Type": "application/json",
+                "Authorization": "Bearer " + localStorage.getItem('userToken')
             }
         })
             .then(resposta => {
                 if (resposta.status === 201) {
-                    this.setState({ isLoading: false });
+                    this.setState({ isLoading: false, mensagem: 'Consulta cadastrada' });
+                    
                 }
             })
             .then(
@@ -126,7 +142,7 @@ class Clinica extends Component {
                                             </select>
 
                                             <select className='listSelect' name='idProntuario' type='text' value={this.state.idProntuario} onChange={this.atualizaStateCampo}>
-                                                <option value='0'>Selecione o prontuário</option>
+                                                <option value='0'>Selecione o paciente</option>
                                                 {
                                                     this.state.listaProntuarios.map(prontuario => {
                                                         return (
@@ -139,7 +155,8 @@ class Clinica extends Component {
                                             </select>
                                             <input type='datetime-local' name='dataConsulta' value={this.state.dataConsulta} onChange={this.atualizaStateCampo} />
                                             <input placeholder='Situação' type='text' name='situacao' value={this.state.situacao} onChange={this.atualizaStateCampo} />
-                                            <span ></span>
+                                            <span className='space' ></span>
+                                            <p className='mensagem'>{this.state.mensagem}</p>
 
                                             {
                                                 this.state.isLoading === true &&
@@ -198,7 +215,7 @@ class Clinica extends Component {
                                                 <p>{consulta.situacao !== '' ? consulta.situacao : '-'}</p>
                                             </div>
                                             <figure>
-                                                <img src={moreIcon} alt='Icone de mais opções' />
+                                                <button><img src={moreIcon} alt='Icone de mais opções'/></button>
                                             </figure>
                                         </li>
                                     );

@@ -1,5 +1,6 @@
 import '../../assets/css/SideBar.css';
 import { Link } from 'react-router-dom';
+import { parseJwt } from '../../services/Auth';
 import logo from '../../assets/images/logo_spmedgroup.svg';
 import user from '../../assets/icons/user.svg';
 import geral from '../../assets/icons/geral.svg';
@@ -26,7 +27,7 @@ function SideBar() {
                 </nav>
                 <div className='barUser'>
                     <img src={user} alt='Icone de usuário' />
-                    <p>João Vitor</p>
+                    <p>{parseJwt().name}</p>
                 </div>
             </div>
         </div>

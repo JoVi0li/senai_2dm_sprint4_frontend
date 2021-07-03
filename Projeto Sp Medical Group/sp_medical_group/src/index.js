@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Route, BrowserRouter as Router, Switch, Redirect } from 'react-router-dom';
+import { parseJwt, userAutenticado } from './services/Auth';
 import './index.css';
 import App from './pages/home/App';
 import Login from './pages/login/Login'
@@ -9,8 +10,41 @@ import Paciente from './pages/dashbordPaciente/Paciente';
 import Medico from './pages/dashbordMedico/Medico';
 import Clinica from './pages/dashbordClinica/Clinica';
 import Consulta from './pages/dashbordConsulta/Consulta';
+import ConsultaPaciente from './pages/consulta/Paciente';
+import ConsultaMedico from './pages/consulta/Medico';
 import reportWebVitals from './reportWebVitals';
+import { Component } from 'react';
 
+const PermissaoAdm = ({ component : Component  }) => (
+  <Route 
+    render = { props =>
+      userAutenticado() && parseJwt().Role === "1" ? 
+      <Component {... props} /> : 
+      <Redirect to = '/login' />
+    }
+  />
+);
+
+const PermissaoMedico = ({ component : Component  }) => (
+  <Route 
+    render = { props =>
+      userAutenticado() && parseJwt().Role === "2" ? 
+      <Component {... props} /> : 
+      <Redirect to = '/login' />
+    }
+  />
+);
+
+
+const PermissaoPaciente = ({ component : Component  }) => (
+  <Route 
+    render = { props =>
+      userAutenticado() && parseJwt().Role === "3" ? 
+      <Component {... props} /> : 
+      <Redirect to = '/login' />
+    }
+  />
+);
 
 const routing = (
   <Router>
@@ -18,12 +52,14 @@ const routing = (
       <Switch>
         <Route exact path='/' component={App} />
         <Route path='/login' component={Login} />
-        <Route exact path='/dashbord' component={Home}/>
-        <Route path='/dashbord/pacientes' component={Paciente}/>
-        <Route path='/dashbord/medicos' component={Medico}/>
-        <Route path='/dashbord/clinicas' component={Clinica}/>
-        <Route path='/dashbord/consultas' component={Consulta}/>
-        <Redirect to='/' />
+        <PermissaoAdm exact path='/dashbord' component={Home} />
+        <PermissaoAdm path='/dashbord/pacientes' component={Paciente} />
+        <PermissaoAdm path='/dashbord/medicos' component={Medico} />
+        <PermissaoAdm path='/dashbord/clinicas' component={Clinica} />
+        <PermissaoAdm path='/dashbord/consultas' component={Consulta} />
+        <PermissaoPaciente exact path='/consultas/Paciente' component={ConsultaPaciente} />
+        <PermissaoMedico path='/consultas/Medico' component={ConsultaMedico} />
+        <Redirect to='/' component={App} />
       </Switch>
     </div>
   </Router>

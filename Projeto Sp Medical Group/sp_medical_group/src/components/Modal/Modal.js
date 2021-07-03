@@ -8,6 +8,7 @@ class Modal extends Component {
     super(props);
     this.state = {
 
+
     }
   }
 
@@ -24,7 +25,6 @@ class Modal extends Component {
           </button>
 
         )}
-        // Optional fields and their default values
         offsetX={0}
         offsetY={0}
       >

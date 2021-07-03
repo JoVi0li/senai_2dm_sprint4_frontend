@@ -11,7 +11,6 @@ function Header(){
             <nav className="headerNav">
                 <ul className="headerUl">
                     <li><Link to='/'>Home</Link></li>
-                    <li><Link to='/dashbord'>Dashbord</Link></li>
                     <li className='headerLogin'><Link to='/login'>Login</Link></li>
                 </ul>
             </nav>

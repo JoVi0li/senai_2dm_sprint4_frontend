@@ -1,9 +1,11 @@
 import { Component } from "react";
 import '../../assets/css/List.css';
+import '../../assets/css/ModalChoice.css';
 import SideBar from "../../components/sideBar/SideBar";
 import pacienteIcon from '../../assets/icons/paciente.svg';
 import userIcon from '../../assets/icons/user.svg';
-import moreIcon from '../../assets/icons/more.svg';
+import editIcon from '../../assets/icons/edit.svg';
+import deleteIcon from '../../assets/icons/trash_full.svg'
 
 import Modal from '../../components/Modal/Modal';
 
@@ -22,7 +24,9 @@ class Paciente extends Component {
             cpf: '',
             endereco: '',
             dataNascimento: '',
-            isLoading: false
+            isLoading: false,
+            idProntuarioAlterado: 0,
+            mensagem: ''
         }
     }
 
@@ -32,13 +36,35 @@ class Paciente extends Component {
 
 
     buscarPacientes = () => {
-        fetch('http://localhost:5000/api/Prontuario')
+        fetch('http://localhost:5000/api/Prontuario', {
+            headers: {
+                "Authorization": "Bearer " + localStorage.getItem('userToken')
+            }
+        })
             .then(resposta => resposta.json())
             .then(data => this.setState({ listaPacientes: data }))
             .catch(erro => console.log(erro));
     }
+
+    BuscarPacientePorId = (paciente) => {
+        this.setState({
+            idProntuarioAlterado: paciente.idProntuario,
+            idUsuario: paciente.idUsuario,
+            nome: paciente.nome,
+            rg: paciente.rg,
+            telefone: paciente.telefone,
+            cpf: paciente.cpf,
+            endereco: paciente.endereco,
+            dataNascimento: paciente.dataNascimento
+        })
+    }
+
     buscarUsuarios = () => {
-        fetch('http://localhost:5000/api/Usuario')
+        fetch('http://localhost:5000/api/Usuario', {
+            headers: {
+                "Authorization": "Bearer " + localStorage.getItem('userToken')
+            }
+        })
             .then(resposta => resposta.json())
             .then(data => this.setState({ listaUsuarios: data }))
             .catch(erro => console.log(erro));
@@ -46,33 +72,85 @@ class Paciente extends Component {
 
     cadastrarPacientes = (event) => {
         event.preventDefault();
-        this.setState({ isLoading: true });
+        if (this.state.idProntuarioAlterado !== 0) {
 
-        let paciente = {
-            IdUsuario: this.state.idUsuario,
-            Nome: this.state.nome,
-            Rg: this.state.rg,
-            Telefone: this.state.telefone,
-            Cpf: this.state.cpf,
-            Endereco: this.state.endereco,
-            DataNascimento: this.state.dataNascimento,
-        };
+            let paciente = {
+                IdUsuario: this.state.idUsuario,
+                Nome: this.state.nome,
+                Rg: this.state.rg,
+                Telefone: this.state.telefone,
+                Cpf: this.state.cpf,
+                Endereco: this.state.endereco,
+                DataNascimento: this.state.dataNascimento,
+            };
 
-        fetch('http://localhost:5000/api/Prontuario', {
-            method: 'POST',
-            body: JSON.stringify(paciente),
-            headers: {
-                "Content-Type": "application/json",
-            }
-        })
-            .then(resposta => {
-                if (resposta.status === 201) {
-                    this.setState({ isLoading: false });
+
+            fetch('http://localhost:5000/api/Prontuario/' + this.state.idProntuarioAlterado, {
+                method: 'PUT',
+                body: JSON.stringify(paciente),
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": "Bearer " + localStorage.getItem('userToken')
                 }
             })
-            .then(
-                this.buscarPacientes
-            )
+                .then(resposta => {
+                    if (resposta.status === 204) {
+                        this.setState({ mensagem: 'Médico Atualizado' })
+                        this.setState({ isLoading: false })
+                    }  
+                })
+                .catch(() => {
+                    this.setState({ isLoading: false });
+                })
+                .then(this.buscarPacientes)
+
+
+        } else {
+            this.setState({ isLoading: true });
+
+            let paciente = {
+                IdUsuario: this.state.idUsuario,
+                Nome: this.state.nome,
+                Rg: this.state.rg,
+                Telefone: this.state.telefone,
+                Cpf: this.state.cpf,
+                Endereco: this.state.endereco,
+                DataNascimento: this.state.dataNascimento,
+            };
+
+            fetch('http://localhost:5000/api/Prontuario', {
+                method: 'POST',
+                body: JSON.stringify(paciente),
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": "Bearer " + localStorage.getItem('userToken')
+                }
+            })
+                .then(resposta => {
+                    if (resposta.status === 201) {
+                        this.setState({ isLoading: false });
+                    }
+                })
+                .then(
+                    this.buscarPacientes
+                )
+
+        }
+    }
+
+    ExcluirPaciente = (paciente) => {
+        fetch('http://localhost:5000/api/Prontuario/' + paciente.idProntuario, {
+            method: 'DELETE',
+            headers: {
+                "Authorization": "Bearer " + localStorage.getItem('userToken')
+            }
+        })
+        .then(resposta => {
+            if (resposta.status === 204) {
+                this.buscarPacientes();
+                console.log("Deu certo!!! Excluiu")
+            }
+        })
     }
 
     atualizaStateCampo = (campo) => {
@@ -105,7 +183,12 @@ class Paciente extends Component {
                                 <Modal>
                                     <div className='formContent'>
                                         <header>
-                                            <h1>Cadastro de paciente (prontuario)</h1>
+                                            {
+                                                this.state.idProntuarioAlterado !== 0 ?
+                                                    <h1>Atualização de paciente(prontuario)</h1>
+                                                    : <h1>Cadastro de paciente (prontuario)</h1>
+
+                                            }
                                         </header>
                                         <form className='modalForm' onSubmit={this.cadastrarPacientes}>
                                             <select className='listSelect' name='idUsuario' type='text' value={this.state.idUsuario} onChange={this.atualizaStateCampo}>
@@ -126,8 +209,8 @@ class Paciente extends Component {
                                             <input placeholder='Telefone' type='text' value={this.state.telefone} name='telefone' onChange={this.atualizaStateCampo} />
                                             <input placeholder='CPF' type='text' value={this.state.cpf} name='cpf' onChange={this.atualizaStateCampo} />
                                             <input placeholder='Endereço' type='text' value={this.state.endereco} name='endereco' onChange={this.atualizaStateCampo} />
-                                            <input placeholder='Data de Nascimento' type='date' value={this.state.dataNascimento} name='dataNascimento' onChange={this.atualizaStateCampo} />
-                                            <span style={{width: '100%'}}></span>
+                                            <input placeholder='Data de Nascimento' type='text' value={this.state.dataNascimento} name='dataNascimento' onChange={this.atualizaStateCampo} />
+                                            <span style={{ width: '100%' }}></span>
 
                                             {
                                                 this.state.isLoading === true &&
@@ -136,12 +219,17 @@ class Paciente extends Component {
                                                 </button>
                                             }
                                             {
-                                                this.state.isLoading === false &&
-                                                <button type="submit"
-                                                    disabled={this.state.nome === '' || this.state.email === '' || this.state.senha === '' ? 'none' : ''}
-                                                >
-                                                    Cadastrar
-                                                </button >
+                                                this.state.idProntuarioAlterado !== 0 && this.state.isLoading === false ?
+                                                    <button type="submit"
+                                                        disabled={this.state.nome === '' || this.state.email === '' || this.state.senha === '' ? 'none' : ''}
+                                                    >
+                                                        Atualizar
+                                                    </button >
+                                                    : <button type="submit"
+                                                        disabled={this.state.nome === '' || this.state.email === '' || this.state.senha === '' ? 'none' : ''}
+                                                    >
+                                                        Cadastrar
+                                                    </button >
                                             }
                                         </form>
                                     </div>
@@ -181,13 +269,18 @@ class Paciente extends Component {
                                                 <p>{paciente.telefone !== '' ? paciente.telefone : '-'}</p>
                                             </div>
                                             <div>
-                                                <p>{paciente.dataNascimento !== '' ?  Intl.DateTimeFormat("pt-BR").format(new Date(paciente.dataNascimento)) : '-'}</p>
+                                                <p>{paciente.dataNascimento !== '' ? paciente.dataNascimento : '-'}</p>
                                             </div>
                                             <div>
                                                 <p className='textJustify'>{paciente.endereco !== '' ? paciente.endereco : '-'}</p>
                                             </div>
                                             <figure>
-                                                <img src={moreIcon} alt='Icone de mais opções' />
+                                                <button onClick={() => this.BuscarPacientePorId(paciente)}>
+                                                    <img src={editIcon} alt='Icone de edição' />
+                                                </button>
+                                                <button onClick={() => this.ExcluirPaciente(paciente)}>
+                                                    <img src={deleteIcon} alt='Icone de exclusão' />
+                                                </button>
                                             </figure>
                                         </li>
                                     );

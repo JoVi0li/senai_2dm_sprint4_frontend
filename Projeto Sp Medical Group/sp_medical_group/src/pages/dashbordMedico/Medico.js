@@ -1,9 +1,11 @@
 import { Component } from "react";
 import '../../assets/css/List.css';
+import '../../assets/css/ModalChoice.css';
 import SideBar from "../../components/sideBar/SideBar";
 import medicoIcon from '../../assets/icons/medico.svg'
 import userIcon from '../../assets/icons/user.svg';
-import moreIcon from '../../assets/icons/more.svg';
+import editIcon from '../../assets/icons/edit.svg';
+import deleteIcon from '../../assets/icons/trash_full.svg'
 
 import Modal from '../../components/Modal/Modal';
 
@@ -20,10 +22,12 @@ class Medico extends Component {
             nome: '',
             crm: '',
             idUsuario: 0,
+            idMedico: 0,
             idEspecialidade: 0,
             idClinica: 0,
             isLoading: false,
-            mensagem: ''
+            mensagem: '',
+            idMedicoAlterado: 0,
         }
     }
 
@@ -33,28 +37,55 @@ class Medico extends Component {
 
 
     buscarMedicos = () => {
-        fetch('http://localhost:5000/api/Medico')
+        fetch('http://localhost:5000/api/Medico', {
+            headers: {
+                "Authorization": "Bearer " + localStorage.getItem('userToken')
+            }
+        })
             .then(resposta => resposta.json())
             .then(data => this.setState({ listaMedicos: data }))
             .catch(erro => console.log(erro));
     }
 
+    BuscarMedicoPorId = (medico) => {
+        this.setState({
+            idUsuario: medico.idUsuario,
+            idMedicoAlterado: medico.idMedico,
+            nome: medico.nome,
+            crm: medico.crm,
+            idClinica: medico.idClinica,
+            idEspecialidade: medico.idEspecialidade
+        })
+    }
+
     buscarUsuarios = () => {
-        fetch('http://localhost:5000/api/Usuario')
+        fetch('http://localhost:5000/api/Usuario', {
+            headers: {
+                "Authorization": "Bearer " + localStorage.getItem('userToken')
+            }
+        })
             .then(resposta => resposta.json())
             .then(data => this.setState({ listaUsuarios: data }))
             .catch(erro => console.log(erro));
     }
 
     buscarClinicas = () => {
-        fetch('http://localhost:5000/api/Clinica')
+        fetch('http://localhost:5000/api/Clinica', {
+            headers: {
+                "Authorization": "Bearer " + localStorage.getItem('userToken')
+            }
+        })
             .then(resposta => resposta.json())
             .then(data => this.setState({ listaClinicas: data }))
             .catch(erro => console.log(erro));
     }
 
     buscarEspecialidade = () => {
-        fetch('http://localhost:5000/api/Especialidade')
+        fetch('http://localhost:5000/api/Especialidade', {
+            headers: {
+                "Authorization": "Bearer " + localStorage.getItem('userToken')
+            }
+        })
             .then(resposta => resposta.json())
             .then(data => this.setState({ listaEspecialidades: data }))
             .catch(erro => console.log(erro));
@@ -62,36 +93,89 @@ class Medico extends Component {
 
     cadastrarMedico = (event) => {
         event.preventDefault();
-        this.setState({ isLoading: true });
+        if (this.state.idMedicoAlterado !== 0) {
 
-        let paciente = {
-            Nome: this.state.nome,
-            Crm: this.state.crm,
-            IdUsuario: this.state.idUsuario,
-            IdEspecialidade: this.state.idEspecialidade,
-            IdClinica: this.state.idClinica
-        };
+            this.setState({ isLoading: true });
 
-        fetch('http://localhost:5000/api/Medico', {
-            method: 'POST',
-            body: JSON.stringify(paciente),
-            headers: {
-                "Content-Type": "application/json",
-            }
-        })
-            .then(resposta => {
-                if (resposta.status === 201) {
-                    this.setState({ isLoading: false })
-                    this.setState({ mensagem: 'Médico cadastrado!' })
+            let medico = {
+                Nome: this.state.nome,
+                Crm: this.state.crm,
+                IdUsuario: this.state.idUsuario,
+                IdEspecialidade: this.state.idEspecialidade,
+                IdClinica: this.state.idClinica
+            };
+    
+            fetch('http://localhost:5000/api/Medico/' + this.state.idMedicoAlterado, {
+                method: 'PUT',
+                body: JSON.stringify(medico),
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": "Bearer " + localStorage.getItem('userToken')
                 }
             })
+                .then(resposta => {
+                    if (resposta.status === 204) {
+                        this.setState({ isLoading: false })
+                        this.setState({ mensagem: 'Médico Atualizado' })
+                    }
+                })
+    
+                .catch(() => {
+                    this.setState({ isLoading: false });
+                })
+                .then(
+                    this.buscarMedicos
+                );
+            
+        } else {
 
-            .catch(() => {
-                this.setState({ isLoading: false });
+            this.setState({ isLoading: true });
+
+            let paciente = {
+                Nome: this.state.nome,
+                Crm: this.state.crm,
+                IdUsuario: this.state.idUsuario,
+                IdEspecialidade: this.state.idEspecialidade,
+                IdClinica: this.state.idClinica
+            };
+    
+            fetch('http://localhost:5000/api/Medico', {
+                method: 'POST',
+                body: JSON.stringify(paciente),
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": "Bearer " + localStorage.getItem('userToken')
+                }
             })
-            .then(
-                this.buscarMedicos,
-            );
+                .then(resposta => {
+                    if (resposta.status === 201) {
+                        this.setState({ isLoading: false })
+                        this.setState({ mensagem: 'Médico cadastrado!' })
+                    }
+                })
+    
+                .catch(() => {
+                    this.setState({ isLoading: false });
+                })
+                .then(
+                    this.buscarMedicos,
+                );
+        }
+    }
+
+    ExcluirMedico = (medico) => {
+        fetch('http://localhost:5000/api/Medico/' + medico.idMedico, {
+            method: 'DELETE',
+            headers: {
+                "Authorization": "Bearer " + localStorage.getItem('userToken')
+            }
+        })
+        .then(resposta => {
+            if (resposta.status === 204) {
+                this.buscarMedicos();
+                console.log("Deu certo!!! Excluiu")
+            }
+        })
     }
 
     atualizaStateCampo = (campo) => {
@@ -126,7 +210,13 @@ class Medico extends Component {
                                 <Modal>
                                     <div className='formContent'>
                                         <header>
-                                            <h1>Cadastro de médicos</h1>
+                                        {
+                                                this.state.idMedicoAlterado !== 0 ?
+                                                    <h1>Atualização de médico</h1>
+                                                    : <h1>Cadastro de médico</h1>
+
+                                            }
+
                                         </header>
                                         <form className='modalForm' onSubmit={this.cadastrarMedico}>
                                             <select className='listSelect' name='idUsuario' type='text' value={this.state.idUsuario} onChange={this.atualizaStateCampo}>
@@ -175,14 +265,22 @@ class Medico extends Component {
                                                 </button>
                                             }
                                             {
-                                                this.state.isLoading === false &&
+                                                this.state.isLoading === false && this.state.idMedicoAlterado !== 0?
                                                 <button type="submit"
                                                     disabled={this.state.nome === '' || this.state.crm === '' || this.state.idEspecialidade === '' || this.state.idUsuario === '' || this.state.idClinica === ''
                                                         ? 'none' : ''
                                                     }
                                                 >
-                                                    Cadastrar
+                                                    Atualizar
                                                 </button >
+                                                :                                                 <button type="submit"
+                                                disabled={this.state.nome === '' || this.state.crm === '' || this.state.idEspecialidade === '' || this.state.idUsuario === '' || this.state.idClinica === ''
+                                                    ? 'none' : ''
+                                                }
+                                            >
+                                                Cadastrar
+                                            </button >
+
                                             }
                                         </form>
                                     </div>
@@ -221,8 +319,14 @@ class Medico extends Component {
                                                 <p >{medico.crm !== '' ? medico.crm : '-'}</p>
                                             </div>
                                             <figure>
-                                                <img src={moreIcon} alt='Icone de mais opções' />
+                                                <button onClick={() => {this.BuscarMedicoPorId(medico)}}>
+                                                    <img src={editIcon} alt='Icone de edição' />
+                                                </button>
+                                                <button onClick={() => this.ExcluirMedico(medico)}>
+                                                    <img src={deleteIcon} alt='Icone de exclusão' />
+                                                </button>
                                             </figure>
+
                                         </li>
                                     );
                                 })
