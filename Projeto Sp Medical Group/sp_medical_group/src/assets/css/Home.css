@@ -28,7 +28,7 @@
 
 .homeCard{
     width: 30vw;
-    height: 530px;
+    height: 90vh;
     border-radius: 30px;
     background-color: var(--cinza);
     margin-bottom: 50px;
@@ -62,7 +62,7 @@
 .homeCardList li{
     list-style: none;
     display: flex;
-    justify-content: left;
+    justify-content: space-between;
     margin-bottom: 5px;
 }
 
@@ -74,3 +74,10 @@
 .homeInput{
     width: 50% !important;
 }
+
+.button-home img{
+    width: 25px;
+    height: 25px;
+    margin-left: 10px;
+}
+

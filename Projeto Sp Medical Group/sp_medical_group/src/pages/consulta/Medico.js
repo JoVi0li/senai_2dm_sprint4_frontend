@@ -1,13 +1,10 @@
 import  React,{ Component } from "react";
+import { Link } from 'react-router-dom';
 import '../../assets/css/List.css';
-import SideBar from "../../components/sideBar/SideBar";
 import consultaIcon from '../../assets/icons/consulta.svg';
-import moreIcon from '../../assets/icons/more.svg';
-import deleteIcon from '../../assets/icons/trash_full.svg';
-import editIcon from '../../assets/icons/edit.svg';
-import Modal from '../../components/Modal/Modal';
+import { parseJwt } from "../../services/Auth";
 
-class Paciente extends Component {
+class ConsultaMedico extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -31,25 +28,17 @@ class Paciente extends Component {
 
 
     buscarConsultas = () => {
-        fetch('http://localhost:5000/api/Consultum')
+        fetch('http://localhost:5000/api/Consultum/GetByIdDoctor/' + parseJwt().jti, {
+            headers: {
+                "Authorization": "Bearer " + localStorage.getItem('userToken')
+            }
+
+        })
             .then(resposta => resposta.json())
             .then(data => this.setState({ listaConsultas: data }))
             .catch(erro => console.log(erro));
     }
 
-    buscarMedicos = () => {
-        fetch('http://localhost:5000/api/Medico')
-            .then(resposta => resposta.json())
-            .then(data => this.setState({ listaMedicos: data }))
-            .catch(erro => console.log(erro));
-    }
-
-    buscarProntuarios = () => {
-        fetch('http://localhost:5000/api/Prontuario')
-            .then(resposta => resposta.json())
-            .then(data => this.setState({ listaProntuarios: data }))
-            .catch(erro => console.log(erro));
-    }
 
 
 
@@ -60,30 +49,30 @@ class Paciente extends Component {
 
     componentDidMount() {
         this.buscarConsultas();
-        this.buscarMedicos();
-        this.buscarProntuarios();
     }
 
     render() {
         return (
 
             <div className='Body'>
-                <div className='Content'>
+                <div className='Content-Consulta'>
 
 
                     <header className='Header'>
                         <div className='tituloButton'>
                             <div className='tituloIcon'>
                                 <figure>
-                                    <img src={consultaIcon} alt='Icone de pacientes' />
+                                    <Link to='/home'>
+                                        <img src={consultaIcon} alt='Icone de pacientes' />
+                                    </Link>
                                 </figure>
-                                <p>Minhas consultas (medico)</p>
+                                <p>Minhas consultas</p>
                             </div>
                         </div>
                         <div className='infos'>
                             <div className='countUsers'>
                                 <span>{this.state.listaConsultas.length}</span>
-                                <p>prontuários</p>
+                                <p>consultas</p>
                             </div>
                             <div className='options'>
                                 <form >
@@ -105,21 +94,24 @@ class Paciente extends Component {
                                             <figure>
                                                 <img src={consultaIcon} alt='Icone de consulta' />
                                             </figure>
+                                            <div>
+                                                <p>{consulta.idMedicoNavigation.nome !== '' ? consulta.idMedicoNavigation.nome : '-'}</p>
+                                                <p className='subInfo'>Médico</p>
+                                            </div>
                                             <div className='nomeEmail'>
-                                                <p>{consulta.idProntuario !== '' ? consulta.idProntuario : '-'}</p>
+                                                <p>{consulta.idProntuarioNavigation.nome!== '' ? consulta.idProntuarioNavigation.nome : '-'}</p>
+                                                <p className='subInfo'>Paciente</p>
                                             </div>
                                             <div>
-                                                <p>{consulta.idMedico !== '' ? consulta.idMedico : '-'}</p>
-                                            </div>
-                                            <div>
-                                                <p>{consulta.dataConsulta !== '' ? Intl.DateTimeFormat("pt-BR").format(new Date(consulta.dataConsulta)) : '-'}</p>
+                                                <p>{consulta.dataConsulta !== '' ? consulta.dataConsulta : '-'}</p>
+                                                <p className='subInfo'>Data da consulta</p>
+
                                             </div>
                                             <div>
                                                 <p>{consulta.situacao !== '' ? consulta.situacao : '-'}</p>
+                                                <p className='subInfo'>Situação</p>
+
                                             </div>
-                                            <figure>
-                                                <button><img src={moreIcon} alt='Icone de mais opções' /></button>
-                                            </figure>
                                         </li>
                                     );
                                 })
@@ -132,4 +124,4 @@ class Paciente extends Component {
     }
 }
 
-export default Paciente;
+export default ConsultaMedico;

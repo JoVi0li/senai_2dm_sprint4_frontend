@@ -314,9 +314,11 @@ class Medico extends Component {
                                             </figure>
                                             <div className='nomeEmail'>
                                                 <p>{medico.nome !== '' ? medico.nome : '-'}</p>
+                                                <p className='subInfo'>Médico</p>
                                             </div>
                                             <div>
                                                 <p >{medico.crm !== '' ? medico.crm : '-'}</p>
+                                                <p className='subInfo'>CRM</p>
                                             </div>
                                             <figure>
                                                 <button onClick={() => {this.BuscarMedicoPorId(medico)}}>

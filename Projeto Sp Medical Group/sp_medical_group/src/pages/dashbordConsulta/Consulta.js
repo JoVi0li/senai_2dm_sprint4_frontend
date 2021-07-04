@@ -2,7 +2,6 @@ import { Component } from "react";
 import '../../assets/css/List.css';
 import SideBar from "../../components/sideBar/SideBar";
 import consultaIcon from '../../assets/icons/consulta.svg';
-import moreIcon from '../../assets/icons/more.svg';
 import deleteIcon from '../../assets/icons/trash_full.svg';
 import editIcon from '../../assets/icons/edit.svg';
 import Modal from '../../components/Modal/Modal';
@@ -16,6 +15,7 @@ class Clinica extends Component {
             listaProntuarios: [],
             show: false,
             open: false,
+            idConsultaAlterado: 0,
             idProntuario: 0,
             idMedico: 0,
             dataConsulta: '',
@@ -39,6 +39,16 @@ class Clinica extends Component {
             .then(resposta => resposta.json())
             .then(data => this.setState({ listaConsultas: data }))
             .catch(erro => console.log(erro));
+    }
+
+    BuscarConsultaPorId = (consulta) => {
+        this.setState({
+            idConsultaAlterado: consulta.idConsulta,
+            idProntuario: consulta.idProntuario,
+            idMedico: consulta.idMedico,
+            dataConsulta: consulta.dataConsulta,
+            situacao: consulta.situacao
+        })
     }
 
     buscarMedicos = () => {
@@ -66,32 +76,79 @@ class Clinica extends Component {
 
     cadastrarConsulta = (event) => {
         event.preventDefault();
-        this.setState({ isLoading: true });
 
-        let consulta = {
-            IdProntuario: this.state.idProntuario,
-            IdMedico: this.state.idMedico,
-            DataConsulta: this.state.dataConsulta,
-            Situacao: this.state.situacao
-        };
+        if (this.state.idConsultaAlterado !== 0) {
+            this.setState({ isLoading: true });
 
-        fetch('http://localhost:5000/api/Consultum', {
-            method: 'POST',
-            body: JSON.stringify(consulta),
+            let consulta = {
+                IdProntuario: this.state.idProntuario,
+                IdMedico: this.state.idMedico,
+                DataConsulta: this.state.dataConsulta,
+                Situacao: this.state.situacao
+            };
+
+            fetch('http://localhost:5000/api/Consultum/' + this.state.idConsultaAlterado, {
+                method: 'PUT',
+                body: JSON.stringify(consulta),
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": "Bearer " + localStorage.getItem('userToken')
+                }
+            })
+                .then(resposta => {
+                    if (resposta.status === 204) {
+                        this.setState({ isLoading: false, mensagem: 'Consulta alterada' });
+
+                    }
+                })
+                .then(
+                    this.buscarConsultas
+                )
+        } else {
+
+            this.setState({ isLoading: true });
+
+            let consulta = {
+                IdProntuario: this.state.idProntuario,
+                IdMedico: this.state.idMedico,
+                DataConsulta: this.state.dataConsulta,
+                Situacao: this.state.situacao
+            };
+
+            fetch('http://localhost:5000/api/Consultum', {
+                method: 'POST',
+                body: JSON.stringify(consulta),
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": "Bearer " + localStorage.getItem('userToken')
+                }
+            })
+                .then(resposta => {
+                    if (resposta.status === 201) {
+                        this.setState({ isLoading: false, mensagem: 'Consulta cadastrada' });
+
+                    }
+                })
+                .then(
+                    this.buscarConsultas
+                )
+
+        }
+    }
+
+    ExcluirConsulta = (consulta) => {
+        fetch('http://localhost:5000/api/Consultum/' + consulta.idConsulta, {
+            method: 'DELETE',
             headers: {
-                "Content-Type": "application/json",
                 "Authorization": "Bearer " + localStorage.getItem('userToken')
             }
         })
             .then(resposta => {
-                if (resposta.status === 201) {
-                    this.setState({ isLoading: false, mensagem: 'Consulta cadastrada' });
-                    
+                if (resposta.status === 204) {
+                    this.buscarConsultas();
+                    console.log("Deu certo!!! Excluiu")
                 }
             })
-            .then(
-                this.buscarConsultas
-            )
     }
 
     atualizaStateCampo = (campo) => {
@@ -125,7 +182,12 @@ class Clinica extends Component {
                                 <Modal>
                                     <div className='formContent'>
                                         <header>
-                                            <h1>Cadastro de consulta</h1>
+                                            {
+                                                this.state.idConsultaAlterado !== 0 ?
+                                                    <h1>Atualização de consulta</h1>
+                                                    : <h1>Cadastro de consulta</h1>
+
+                                            }
                                         </header>
                                         <form className='modalForm' onSubmit={this.cadastrarConsulta}>
                                             <select className='listSelect' name='idMedico' type='text' value={this.state.idMedico} onChange={this.atualizaStateCampo}>
@@ -165,12 +227,18 @@ class Clinica extends Component {
                                                 </button>
                                             }
                                             {
-                                                this.state.isLoading === false &&
-                                                <button type="submit"
-                                                    disabled={this.state.nome === '' || this.state.email === '' || this.state.senha === '' ? 'none' : ''}
-                                                >
-                                                    Cadastrar
-                                                </button >
+                                                this.state.idConsultaAlterado !== 0 && this.state.isLoading === false ?
+                                                    <button type="submit"
+                                                        disabled={this.state.nome === '' || this.state.email === '' || this.state.senha === '' ? 'none' : ''}
+                                                    >
+                                                        Atualizar
+                                                    </button >
+                                                    :
+                                                    <button type="submit"
+                                                        disabled={this.state.nome === '' || this.state.email === '' || this.state.senha === '' ? 'none' : ''}
+                                                    >
+                                                        Cadastrar
+                                                    </button >
                                             }
                                         </form>
                                     </div>
@@ -203,19 +271,28 @@ class Clinica extends Component {
                                                 <img src={consultaIcon} alt='Icone de consulta' />
                                             </figure>
                                             <div className='nomeEmail'>
-                                                <p>{consulta.idProntuario !== '' ? consulta.idProntuario : '-'}</p>
+                                                <p>{consulta.idProntuarioNavigation.nome  !== '' ? consulta.idProntuarioNavigation.nome : '-'}</p>
+                                                <p className='subInfo'>Paciente</p>
                                             </div>
                                             <div>
-                                                <p>{consulta.idMedico !== '' ? consulta.idMedico : '-'}</p>
+                                                <p>{consulta.idMedicoNavigation.nome  !== '' ? consulta.idMedicoNavigation.nome : '-'}</p>
+                                                <p className='subInfo'>Médico</p>
                                             </div>
                                             <div>
-                                                <p>{consulta.dataConsulta !== '' ? Intl.DateTimeFormat("pt-BR").format(new Date(consulta.dataConsulta)) : '-'}</p>
+                                                <p>{consulta.dataConsulta !== '' ? consulta.dataConsulta : '-'}</p>
+                                                <p className='subInfo'>Data da consulta</p>
                                             </div>
                                             <div>
                                                 <p>{consulta.situacao !== '' ? consulta.situacao : '-'}</p>
+                                                <p className='subInfo'>Situação</p>
                                             </div>
                                             <figure>
-                                                <button><img src={moreIcon} alt='Icone de mais opções'/></button>
+                                            <button onClick={() => this.BuscarConsultaPorId(consulta)}>
+                                                    <img src={editIcon} alt='Icone de edição' />
+                                                </button>
+                                                <button onClick={() => this.ExcluirConsulta(consulta)}>
+                                                    <img src={deleteIcon} alt='Icone de exclusão' />
+                                                </button>
                                             </figure>
                                         </li>
                                     );

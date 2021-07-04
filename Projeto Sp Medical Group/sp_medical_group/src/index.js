@@ -13,7 +13,6 @@ import Consulta from './pages/dashbordConsulta/Consulta';
 import ConsultaPaciente from './pages/consulta/Paciente';
 import ConsultaMedico from './pages/consulta/Medico';
 import reportWebVitals from './reportWebVitals';
-import { Component } from 'react';
 
 const PermissaoAdm = ({ component : Component  }) => (
   <Route 
@@ -57,7 +56,7 @@ const routing = (
         <PermissaoAdm path='/dashbord/medicos' component={Medico} />
         <PermissaoAdm path='/dashbord/clinicas' component={Clinica} />
         <PermissaoAdm path='/dashbord/consultas' component={Consulta} />
-        <PermissaoPaciente exact path='/consultas/Paciente' component={ConsultaPaciente} />
+        <PermissaoPaciente path='/consultas/Paciente' component={ConsultaPaciente} />
         <PermissaoMedico path='/consultas/Medico' component={ConsultaMedico} />
         <Redirect to='/' component={App} />
       </Switch>
